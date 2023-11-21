@@ -4,6 +4,7 @@
  * @id javascript/functions-directly-called-by-tests
  * @problem.severity recommendation
  */
+
 import javascript
 
 /**
@@ -15,12 +16,12 @@ predicate isTest(Function test) {
     it.getCalleeName() = "it" and
     it.getParent*() = describe and
     test = it.getArgument(1)
-  )
+  ) and test.getName() == 'pressActionKey'
 }
 
 /**
-* Holds if `caller` contains a call to `callee`.
-*/
+ * Holds if `caller` contains a call to `callee`.
+ */
 predicate calls(Function caller, Function callee) {
   exists(DataFlow::CallNode call |
     call.getEnclosingFunction() = caller and
@@ -29,6 +30,7 @@ predicate calls(Function caller, Function callee) {
 }
 
 from Function test, Function callee
-where isTest(test) and
-      calls(test, callee)
+where
+  isTest(test) and
+  calls(test, callee)
 select callee, "is directly called by a test"
