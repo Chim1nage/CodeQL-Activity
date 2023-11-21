@@ -8,15 +8,16 @@
 import javascript
 
 predicate isJavaScriptOrTypeScriptFile(File file) {
+  file.getExtension() = "js" or file.getExtension() = "jsx" or
   file.getExtension() = "ts" or file.getExtension() = "tsx"
 }
 
 predicate fileMoreThan10Lines(File file) {
-   Function.getNumLines(file) > 10 
-   }
+   file.getNumberOfLines() > 10 
+}
 
 from File file
 where
   isJavaScriptOrTypeScriptFile(file) and
   fileMoreThan10Lines(file)
-select file, "Found file with more than 10 lines " + file.getAbsolutePath()
+select file, "Found file with more than 10 lines: " + file.getAbsolutePath()

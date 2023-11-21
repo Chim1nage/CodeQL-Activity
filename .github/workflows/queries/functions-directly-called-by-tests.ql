@@ -16,7 +16,7 @@ predicate isTest(Function test) {
     it.getCalleeName() = "it" and
     it.getParent*() = describe and
     test = it.getArgument(1)
-  ) and test.getName() == 'pressActionKey'
+  )
 }
 
 /**
