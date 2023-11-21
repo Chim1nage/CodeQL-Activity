@@ -12,7 +12,7 @@ predicate isJavaScriptOrTypeScriptFile(File file) {
 }
 
 predicate fileMoreThan10Lines(File file) {
-   func.getNumLines(file) > 10 
+   Function.getNumLines(file) > 10 
    }
 
 from File file
