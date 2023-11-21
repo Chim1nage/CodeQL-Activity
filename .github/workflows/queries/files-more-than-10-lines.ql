@@ -11,7 +11,9 @@ predicate isJavaScriptOrTypeScriptFile(File file) {
   file.getExtension() = "ts" or file.getExtension() = "tsx"
 }
 
-predicate fileMoreThan10Lines(File file) { file.getNumLines() > 10 }
+predicate fileMoreThan10Lines(File file) {
+   func.getNumLines(file) > 10 
+   }
 
 from File file
 where
